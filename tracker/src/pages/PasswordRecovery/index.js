@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { OutlinedInput } from '@material-ui/core';
+import validator from 'validator'
 
 import logo from '../../assets/images/icon.JPG'
 
@@ -12,7 +13,18 @@ function PasswordRecovery() {
 
   function handleRecovery(event) {
     event.preventDefault()
-    alert('yeah')
+    if(email !=='') {
+      const isEmail = validator.isEmail(email)
+      if(isEmail) {
+        alert('Backend')
+      }
+      else {
+        alert('Invalid Email')
+      }
+    }
+    else {
+      alert('Please, enter your email!')
+    }
   }
 
   return (
@@ -23,7 +35,12 @@ function PasswordRecovery() {
       </header>
 
       <form onSubmit={handleRecovery}>
-        <OutlinedInput className='forgot-input' placeholder="enter your email" InputLabel="enter your email"/>
+        <OutlinedInput 
+          className='forgot-input' 
+          placeholder="enter your email" 
+          InputLabel="enter your email"
+          onChange={(event) => setEmail(event.target.value)}
+        />
         
         <footer>
           <button type="submit">
