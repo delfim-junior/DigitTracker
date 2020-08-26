@@ -1,0 +1,43 @@
+.main-container {
+    display: grid;
+    grid-template-rows: 1fr 6fr 1fr;
+    width: 100vw;
+    height: 100vh;
+}
+
+.main-container main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #F0F0F7;
+    cursor: pointer    
+}
+
+.main-container main h1 {
+    font-size: 55pt;
+}
+
+.flash-message {
+    animation-name: flash;
+     animation-duration: 0.5s;
+     animation-timing-function: linear;
+     animation-iteration-count: infinite;
+     animation-direction: alternate;
+     animation-play-state: running;
+ }
+ 
+ @keyframes flash {
+     from {color: #FFCC00;}
+     to {color: #6A6180;}
+ }
+
+ .main-container footer {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    color: #979A9A;  
+    background: #F7F9F9;
+}
+
+

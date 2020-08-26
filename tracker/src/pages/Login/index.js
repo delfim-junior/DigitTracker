@@ -11,6 +11,7 @@ function Login() {
       <input type="text" placeholder="Passowrd" />
       <Link to='/forgot-password'>forgot Passowrd</Link>
       <Link to='/register'>sign-up</Link>
+      <Link to='/admin'>Login</Link>
     </div>
   )
 }

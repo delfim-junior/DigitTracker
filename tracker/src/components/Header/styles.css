@@ -1,0 +1,31 @@
+.main-container header {
+    display: flex;
+    justify-content: space-between;
+    background: #3C51B5; 
+    color: #FFF;
+    padding: 10px;
+    
+}
+
+.main-container header > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition: 0.2;
+}
+
+.main-container header > div h6{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+}
+
+
+div:nth-child(2) h6{
+    margin-right: 15px;
+}
+
+.main-container header > div:hover {
+    color: #D2B4DE;
+    cursor: pointer;
+}
