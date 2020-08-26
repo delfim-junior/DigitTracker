@@ -1,22 +1,27 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { OutlinedInput } from '@material-ui/core';
 import validator from 'validator'
 
 import logo from '../../assets/images/icon.JPG'
 
 import './styles.css';
+import Loading from '../Loading';
+
 
 
 function PasswordRecovery() {
+  const history = useHistory()
+
   const [email, setEmail] = useState()
+  const [successMessage, setSuccessMessage] = useState(false)
 
   function handleRecovery(event) {
     event.preventDefault()
-    if(email !=='') {
+    if (email !== '') {
       const isEmail = validator.isEmail(email)
-      if(isEmail) {
-        alert('Backend')
+      if (isEmail) {
+        setSuccessMessage(true)
       }
       else {
         alert('Invalid Email')
@@ -27,29 +32,52 @@ function PasswordRecovery() {
     }
   }
 
+  function handleLogin() {
+    history.push('/')
+  }
+
   return (
     <div className="container">
       <header className='forgot-header'>
-        <img src={logo} alt="logo" width="120px" height="120px" />
-        <h5>Oops, you forgot your password! Don't worry, access recovery is simple&#128522;</h5>
+
+        {
+
+          successMessage
+            ?
+            <img src={logo} alt="logo" width="400px" height="400px" />
+            :
+            <>
+              <img src={logo} alt="logo" width="120px" height="120px" />
+              <h5> Oops, you forgot your password! Don't worry, access recovery is simple&#128522;</h5>
+            </>
+
+
+        }
       </header>
 
-      <form onSubmit={handleRecovery}>
-        <OutlinedInput 
-          className='forgot-input' 
-          placeholder="enter your email" 
-          type='text'
-          required
-          onChange={(event) => setEmail(event.target.value)}
-        />
-        
-        <footer>
-          <button type="submit">
-            Recover Access
+      {
+        !successMessage &&
+        <form onSubmit={handleRecovery}>
+          <OutlinedInput
+            className='forgot-input'
+            placeholder="enter your email"
+            type='text'
+            required
+            onChange={(event) => setEmail(event.target.value)}
+          />
+
+          <footer>
+            <button type="submit">
+              Recover Access
           </button>
-        </footer>
-      </form>
-    </div>
+          </footer>
+        </form>
+      }
+      {
+        successMessage &&
+        <Loading recovery={true} handleLogin={handleLogin} />
+      }
+    </div >
   );
 }
 
