@@ -1,9 +1,9 @@
 import React from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
-import Login from './pages/Login'
-import PasswordRecovery from './pages/PasswordRecovery'
-import Register from './pages/Register'
-import Admin from './pages/Admin'
+import Login from '../pages/Login'
+import PasswordRecovery from '../pages/PasswordRecovery'
+import Register from '../pages/Register'
+import Admin from '../pages/Admin'
 
 
 const Routes = () => (

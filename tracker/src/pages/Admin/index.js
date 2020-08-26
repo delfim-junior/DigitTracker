@@ -1,8 +1,9 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom'
 
-import './styles.css';
 import Header from '../../components/Header/HeaderComponent';
+import Footer from '../../components/Footer/FooterComponent';
+import RoutesAdmin from '../../routes/routesAdmin';
 
 function Admin() {
     const history = useHistory()
@@ -14,13 +15,8 @@ function Admin() {
     return (
         <div className='main-container'>
             <Header handleNavigateToInitialPage={handleNavigateToInitialPage} />
-            <main>
-                <h1>Welcome John Doe!</h1>
-                <h2 className='flash-message'>You have N approval requests</h2>
-            </main>
-            <footer>
-                <h5>Copyright &copy; DigiTrack 2020</h5>
-            </footer>
+            <RoutesAdmin handleNavigateToInitialPage />
+            <Footer />
         </div>
     );
 }
