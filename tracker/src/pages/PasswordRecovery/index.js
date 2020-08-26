@@ -38,7 +38,8 @@ function PasswordRecovery() {
         <OutlinedInput 
           className='forgot-input' 
           placeholder="enter your email" 
-          InputLabel="enter your email"
+          type='text'
+          required
           onChange={(event) => setEmail(event.target.value)}
         />
         
