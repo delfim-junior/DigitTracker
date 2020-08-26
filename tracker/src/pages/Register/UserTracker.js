@@ -29,7 +29,7 @@ function UserTracker() {
         setConfirmation(true)
     }
 
-    function handleGoBack () {
+    function handleGoBack() {
         history.push('/')
     }
 
@@ -200,8 +200,30 @@ function UserTracker() {
                     </div>
                 }
             </fieldset>
-            <div>
+            <div className="maps">
                 MAPS
+            </div>
+            <Button variant="contained" color="default">
+                Confirm Location
+            </Button>
+            <div className="names">
+                <Button
+                    color='secondary'
+                    component='button'
+                    variant='contained'
+                    className='firsname'
+                    onClick={() => history.goBack()}
+                >
+                    Cancel
+                    </Button>
+                <Button
+                    color='primary'
+                    component='button'
+                    variant='contained'
+                    className='middlename'
+                >
+                    Register
+                    </Button>
             </div>
         </form>
     )

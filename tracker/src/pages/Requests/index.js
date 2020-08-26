@@ -4,6 +4,7 @@ import { FiArrowLeft, FiCheck, FiEye, FiFileText } from 'react-icons/fi'
 
 import { Table } from 'react-bootstrap'
 import './styles.css';
+import { Tooltip } from '@material-ui/core';
 
 function Requests() {
     const history = useHistory()
@@ -32,9 +33,15 @@ function Requests() {
                         <td>John</td>
                         <td>Doe</td>
                         <td className="buttons">
-                            <FiEye className='action' color="#2E86C1" style={{ marginRight: '20px', cursor: 'pointer' }} size={32} />
-                            <FiCheck className='action' color="#2ECC71" style={{ marginRight: '20px', cursor: 'pointer' }} size={32} />
-                            <FiFileText className='action' color="#641E16 " style={{ cursor: 'pointer' }} size={32} />
+                            <Tooltip title="details">
+                                <FiEye className='action' color="#2E86C1" style={{ marginRight: '20px', cursor: 'pointer' }} size={32} />
+                            </Tooltip>
+                            <Tooltip title="approve">
+                                <FiCheck className='action' color="#2ECC71" style={{ marginRight: '20px', cursor: 'pointer' }} size={32} />
+                            </Tooltip>
+                            <Tooltip title="archive">
+                                <FiFileText className='action' color="#641E16 " style={{ cursor: 'pointer' }} size={32} />
+                            </Tooltip>
                         </td>
                     </tr>
 
