@@ -9,10 +9,15 @@ function Identify() {
     function handleNavigate(event) {
         const value = event.target.value
         if (value === 'user') {
-            history.push('/register/user')
+            setTimeout(() => {
+                history.push('/register/user')
+            }, 0)
         }
         else {
-            history.push('/register/professional')
+            setTimeout(() => {
+                history.push('/register/professional')
+            }, 0)
+            
         }
     }
     return (
