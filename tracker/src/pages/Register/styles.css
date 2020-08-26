@@ -109,3 +109,82 @@ div.maps {
     height: 40vh;
     margin-bottom: 1rem;
 }
+
+
+/*Medical Professional*/
+
+.professional-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.professional-container>div {
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    margin-top: 1rem;
+}
+
+.professional-container>div .first-line {
+    margin-right: 10px;
+}
+
+.professional-role {
+    font-size: 16pt
+}
+
+.professional-role label {
+    margin-right: 1rem;
+}
+
+.names {
+    display: flex;
+    align-content: space-between;
+}
+
+.names .firsname, .middlename {
+    width: 50%;
+}
+
+.names .firsname {
+    margin-right: 1rem;
+}
+
+.professional-container .idinfo {
+    margin-top: 2rem;
+    padding: 2rem;
+}
+
+.professional-container div.icon {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.professional-container h6 {
+    color: #D68910;
+}
+
+.professional-container>header {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    margin-top: 4rem;
+}
+
+.professional-container>header h6 {
+    margin-left: 10px;
+    color: #6A6180 !important
+}
+
+.professional-container>header:hover {
+    transform: scale(1.01);
+}
+
+div.maps {
+    background-color:#FFF;
+    height: 40vh;
+    margin-bottom: 1rem;
+}
