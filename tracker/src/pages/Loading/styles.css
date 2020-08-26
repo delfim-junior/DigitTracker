@@ -1,0 +1,16 @@
+.loading-button {
+    width: 30rem !important;
+    background-color: #2ECC71;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.loading-button:focus {
+    border-color: none
+}
+
+.loading-button:hover {
+    background: #239B56;
+}
