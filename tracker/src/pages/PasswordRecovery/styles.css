@@ -3,3 +3,35 @@
     flex-direction: column;
     width: 30rem;
 }
+
+.container header h5 {
+    margin-top: 2rem;
+}
+
+.forgot-input {
+    width: 30rem !important;
+    margin-top: 2rem;
+}
+
+.forgot-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container footer {
+    display: flex;
+    margin-top: 2rem ;
+}
+
+.container footer button {
+    width: 30rem !important;
+    background-color: #3C51B5;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+}
+
+.container footer button:focus {
+    border-color: none
+}
