@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { FiUserPlus, FiArrowLeft } from 'react-icons/fi'
 import { OutlinedInput } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import './styles.css';
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+
+
+import Loading from '../Loading';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -24,6 +26,7 @@ function UserTracker() {
     const history = useHistory()
 
     const [confirmation, setConfirmation] = useState(false)
+    const [successMessage, setSuccessMessage] = useState(false)
 
     function handleShowConfirmation() {
         setConfirmation(true)
@@ -31,6 +34,13 @@ function UserTracker() {
 
     function handleGoBack() {
         history.push('/')
+    }
+
+    function handleRegister() {
+        setSuccessMessage(true)
+        setTimeout(() => {
+            history.push('/')
+        }, 3000)
     }
 
     return (
@@ -221,10 +231,15 @@ function UserTracker() {
                     component='button'
                     variant='contained'
                     className='middlename'
+                    onClick={handleRegister}
                 >
                     Register
                     </Button>
             </div>
+            {
+                successMessage &&
+                <Loading />
+            }
         </form>
     )
 }
