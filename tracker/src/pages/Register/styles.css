@@ -1,0 +1,105 @@
+.idenfy-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.idenfy-container div {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    align-items: stretch;
+}
+
+.idenfy-container div label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 2rem;
+    cursor: pointer;
+}
+
+.idenfy-container div label input[type="radio"] {
+    transform: scale(2)
+}
+
+.idenfy-container button {
+    background: #82E0AA;
+    cursor: pointer;
+    transition: 0.2s;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+}
+
+.idenfy-container button:hover {
+    background: #58D68D;
+}
+
+.user-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.user-container > div {
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    margin-top: 1rem;
+}
+
+.user-container > div .first-line {
+    margin-right: 10px;
+}
+
+.gender {
+    font-size: 16pt
+}
+
+.gender label{
+    margin-right: 1rem;
+}
+
+.names {
+    display: flex;
+    align-content: space-between;
+}
+
+.names .firsname, .middlename {
+    width: 50%;
+}
+
+.names .firsname {
+    margin-right: 1rem;
+}
+
+.user-container .idinfo {
+    margin-top: 2rem;
+    padding: 2rem;
+}
+
+div.icon {
+    display: flex;
+    justify-content: center;
+}
+
+.user-container h6 {
+    color: #D68910;
+}
+
+.user-container>header {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    margin-top: 4rem;
+}
+
+.user-container>header h6 {
+    margin-left: 10px;
+    color: #6A6180 !important
+}
+
+.user-container>header:hover {
+    transform: scale(1.01);
+}
