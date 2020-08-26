@@ -30,7 +30,7 @@ const Loading = ({ recovery, handleLogin }) => {
                 recovery
                     ?
                     <>
-                        <h3 style={{ color: '#FFF' }}>Your Access was successfully Recovered</h3>
+                        <h3 style={{ color: '#FFF' }}>Your Access were successfully Recovered</h3>
                         <button className="loading-button" onClick={() => handleLogin()}>
                             Login
                         </button>
