@@ -1,4 +1,4 @@
-.main-container header {
+.main-container header.main-header {
     display: flex;
     justify-content: space-between;
     background: #3C51B5; 
@@ -7,14 +7,14 @@
     
 }
 
-.main-container header > div {
+.main-container header.main-header > div {
     display: flex;
     flex-direction: row;
     align-items: center;
     transition: 0.2;
 }
 
-.main-container header > div h6{
+.main-container header.main-header > div h6{
     display: flex;
     flex-direction: row;
     margin-left: 10px;

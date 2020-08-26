@@ -5,7 +5,7 @@ import './styles.css'
 
 function Header({ handleNavigateToInitialPage }) {
     return (
-        <header>
+        <header className="main-header">
             <div>
                 <FiUser />
                 <h6>John Doe</h6>
