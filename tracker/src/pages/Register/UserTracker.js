@@ -328,7 +328,7 @@ function UserTracker() {
                 >
                     {
                         location.latitude && location.longitude
-                            ? 'Your location where confirmed!'
+                            ? 'Your location were confirmed!'
                             : 'Confirm Location'
                     }
                 </Button>
