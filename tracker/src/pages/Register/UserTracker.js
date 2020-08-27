@@ -31,6 +31,10 @@ function UserTracker() {
 
     const [confirmation, setConfirmation] = useState(false)
     const [successMessage, setSuccessMessage] = useState(false)
+    const [location, setLocation] = useState({
+        latitude: '',
+        longitude: ''
+    })
     const [formInput, setFormInput] = useState({
         firstName: '',
         middleName: '',
@@ -62,6 +66,11 @@ function UserTracker() {
         setFormInput({ ...formInput, [name]: value })
     }
 
+    function handleLocationConfirm() {
+        setLocation({ ...location, latitude: -25.919488, longitude: 32.5484544 })
+        toast.success('Location sucessfully confirmed')
+    }
+
     function handleRegister(event) {
         event.preventDefault()
         //data ready to use in the backend
@@ -82,13 +91,20 @@ function UserTracker() {
             phoneNumber
         } = formInput
 
+        const { latitude, longitude } = location
+
         const isEmail = validator.isEmail(email)
         if (isEmail) {
-            //Backend...
-            setSuccessMessage(true)
-            setTimeout(() => {
-                history.push('/')
-            }, 3000)
+            if (latitude !== '' && longitude !== '') {
+                //Backend...
+                setSuccessMessage(true)
+                setTimeout(() => {
+                    history.push('/')
+                }, 3000)
+            }
+            else {
+                toast.warn('Please, confirm your location!')
+            }
         }
         else {
             toast.error('The entered Email is not valid')
@@ -106,6 +122,7 @@ function UserTracker() {
                 </header>
                 <div className="icon">
                     <FiUserPlus size={80} />
+                    <h5>User Tracker</h5>
                 </div>
                 <div className="names">
                     <OutlinedInput
@@ -287,10 +304,34 @@ function UserTracker() {
                 </fieldset>
                 <div className="maps">
                     MAPS
-            </div>
-                <Button variant="contained" color="default">
-                    Confirm Location
-            </Button>
+                    <br />
+                    {
+                        location.latitude && location.longitude
+                            ?
+                            <>
+                                <h3>Latitude: {location.latitude}</h3>
+                                <br />
+                                <h3>Longitude: {location.longitude}</h3>
+                            </>
+                            :
+                            <h3>Location Not Confirmed!</h3>
+                    }
+                </div>
+                <Button
+                    onClick={handleLocationConfirm}
+                    variant={
+                        location.latitude && location.longitude
+                            ? 'disabled'
+                            : 'contained'
+                    }
+                    color="default"
+                >
+                    {
+                        location.latitude && location.longitude
+                            ? 'Your location where confirmed!'
+                            : 'Confirm Location'
+                    }
+                </Button>
                 <div className="names">
                     <Button
                         color='secondary'
