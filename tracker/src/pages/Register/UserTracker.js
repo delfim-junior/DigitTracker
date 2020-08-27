@@ -312,6 +312,7 @@ function UserTracker() {
                         Register
                     </Button>
                 </div>
+                <br />
                 {
                     successMessage &&
                     <Loading />

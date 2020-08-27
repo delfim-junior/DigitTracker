@@ -285,6 +285,7 @@ function MedicalProfessional() {
                 >
                     Register
             </Button>
+                <br />
             </form>
             {
                 successMessage &&
