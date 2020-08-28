@@ -28,10 +28,30 @@ function Requests() {
                 firstname: 'Mary',
                 lasname: 'Maria'
             },
+            {
+                id: 3,
+                firstname: 'Janvier',
+                lasname: 'Fernandes'
+            },
+            {
+                id: 3,
+                firstname: 'Janvier',
+                lasname: 'Fernandes'
+            },
+            {
+                id: 3,
+                firstname: 'Janvier',
+                lasname: 'Fernandes'
+            },
+            {
+                id: 3,
+                firstname: 'Janvier',
+                lasname: 'Fernandes'
+            },
         ]
 
         setRequestsList(data)
-    },[])
+    }, [])
 
     function handleGoBack() {
         history.goBack()
@@ -69,7 +89,7 @@ function Requests() {
                                         className='action'
                                         color="#2E86C1"
                                         style={{ marginRight: '20px', cursor: 'pointer' }}
-                                        size={32}
+                                        size={30}
                                         onClick={() => handleSeeDetails(request.id)}
                                     />
 
@@ -78,7 +98,8 @@ function Requests() {
                                         className='action'
                                         color="#2ECC71"
                                         style={{ marginRight: '20px', cursor: 'pointer' }}
-                                        size={32}
+                                        size={30}
+                                        onClick={() => { }}
                                     />
 
                                     <FiFileText
@@ -86,7 +107,8 @@ function Requests() {
                                         className='action'
                                         color="#641E16 "
                                         style={{ cursor: 'pointer' }}
-                                        size={32}
+                                        size={30}
+                                        onClick={() => { }}
                                     />
 
                                 </td>
