@@ -10,12 +10,12 @@ function Identify() {
         const value = event.target.value
         if (value === 'user') {
             setTimeout(() => {
-                history.push('/register/user')
+                history.push('/register/system-user')
             }, 0)
         }
         else {
             setTimeout(() => {
-                history.push('/register/system-user')
+                history.push('/register/device')
             }, 0)
             
         }
