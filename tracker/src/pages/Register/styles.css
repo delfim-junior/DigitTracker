@@ -132,7 +132,7 @@ div.maps {
 }
 
 .professional-role label {
-    margin-right: 1rem;
+    margin-right: 4rem;
 }
 
 .names {
@@ -148,7 +148,7 @@ div.maps {
     margin-right: 1rem;
 }
 
-.professional-container .idinfo {
+.professional-container .field-container {
     margin-top: 2rem;
     padding: 2rem;
 }

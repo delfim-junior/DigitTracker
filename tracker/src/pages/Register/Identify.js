@@ -15,7 +15,7 @@ function Identify() {
         }
         else {
             setTimeout(() => {
-                history.push('/register/professional')
+                history.push('/register/system-user')
             }, 0)
             
         }
