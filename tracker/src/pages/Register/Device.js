@@ -47,6 +47,9 @@ function UserTracker() {
         gender: '',
         birthday: '',
         email: '',
+        confirmEmail: '',
+        password: '',
+        confirmPassword: '',
         nationality: '',
         province: '',
         city: '',
@@ -93,6 +96,9 @@ function UserTracker() {
             gender,
             birthday,
             email,
+            confirmEmail,
+            password,
+            confirmPassword,
             nationality,
             province,
             city,
@@ -114,16 +120,15 @@ function UserTracker() {
         if (isEmail) {
             if (latitude !== '' && longitude !== '') {
                 if (confirmation) {
-                       //Backend...
-                        setSuccessMessage(true)
-                        setTimeout(() => {
-                            history.push('/')
-                        }, 3000)
+                    //Backend...
+                    setSuccessMessage(true)
+                    setTimeout(() => {
+                        history.push('/')
+                    }, 3000)
                 }
                 else {
                     toast.warn('Please, confirm your phone number!')
                 }
-
             }
             else {
                 toast.warn('Please, confirm your location!')
@@ -452,6 +457,53 @@ function UserTracker() {
                             margin="normal"
                             type='number'
                             name="houseNumber"
+                            required
+                            onChange={handleFormInput}
+                        />
+                    </div>
+                </fieldset>
+
+                <fieldset className="field-container">
+                    <legend>Credentials</legend>
+                    <TextField
+                        label="Email"
+                        variant="outlined"
+                        margin="normal"
+                        type='text'
+                        name="email"
+                        fullWidth
+                        required
+                        onChange={handleFormInput}
+                    />
+                    <TextField
+                        label="Confirm your Email"
+                        variant="outlined"
+                        margin="normal"
+                        type='text'
+                        name="confirmEmail"
+                        fullWidth
+                        required
+                        onChange={handleFormInput}
+                    />
+
+                    <div className="names">
+                        <TextField
+                            className='firsname'
+                            label="Passoword"
+                            variant="outlined"
+                            margin="normal"
+                            type='password'
+                            name="password"
+                            required
+                            onChange={handleFormInput}
+                        />
+                        <TextField
+                            className='middlename'
+                            label="Confirm Your Passoword"
+                            variant="outlined"
+                            margin="normal"
+                            type='password'
+                            name="confirmPassword"
                             required
                             onChange={handleFormInput}
                         />
