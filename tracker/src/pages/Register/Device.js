@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { FiUserPlus, FiArrowLeft } from 'react-icons/fi'
-import { OutlinedInput } from '@material-ui/core';
+import { FiUserPlus, FiArrowLeft, FiSearch } from 'react-icons/fi'
+import { OutlinedInput, InputLabel, Select, MenuItem } from '@material-ui/core';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -23,6 +24,10 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(1),
         width: 200,
     },
+    margin: {
+        margin: theme.spacing(1),
+    },
+
 }));
 
 function UserTracker() {
@@ -45,11 +50,17 @@ function UserTracker() {
         nationality: '',
         province: '',
         city: '',
+        area: '',
         houseNumber: '',
         streetName: '',
         idType: '',
         idNumber: '',
         phoneNumber: '',
+        confirmationCode: '',
+        emergencyNumber1: '',
+        emergencyNumber2: '',
+        searchInput: '',
+
 
     })
 
@@ -64,6 +75,7 @@ function UserTracker() {
     function handleFormInput(event) {
         const { name, value } = event.target
         setFormInput({ ...formInput, [name]: value })
+        console.log(formInput)
     }
 
     function handleLocationConfirm() {
@@ -84,11 +96,16 @@ function UserTracker() {
             nationality,
             province,
             city,
+            area,
             houseNumber,
             streetName,
             idType,
             idNumber,
-            phoneNumber
+            confirmationCode,
+            emergencyNumber1,
+            emergencyNumber2,
+            phoneNumber,
+            searchInput
         } = formInput
 
         const { latitude, longitude } = location
@@ -96,11 +113,17 @@ function UserTracker() {
         const isEmail = validator.isEmail(email)
         if (isEmail) {
             if (latitude !== '' && longitude !== '') {
-                //Backend...
-                setSuccessMessage(true)
-                setTimeout(() => {
-                    history.push('/')
-                }, 3000)
+                if (confirmation) {
+                       //Backend...
+                        setSuccessMessage(true)
+                        setTimeout(() => {
+                            history.push('/')
+                        }, 3000)
+                }
+                else {
+                    toast.warn('Please, confirm your phone number!')
+                }
+
             }
             else {
                 toast.warn('Please, confirm your location!')
@@ -121,217 +144,321 @@ function UserTracker() {
                     <h6 onClick={handleGoBack}>Home</h6>
                 </header>
                 <div className="icon">
-                    <FiUserPlus size={80} />
-                    <h5>User Tracker</h5>
+                    <img
+                        src="https://firebasestorage.googleapis.com/v0/b/digitracker-5ea27.appspot.com/o/FCMImages%2Flogo.png?alt=media&token=b15e6a20-58dc-4d76-b195-f26e1422ea98"
+                        alt="logo image"
+                        width="120px"
+                        height="120px"
+                    />
+                    <br />
+                    <h5>Device Registration</h5>
                 </div>
-                <div className="names">
-                    <OutlinedInput
-                        className='firsname'
-                        placeholder="First Name"
-                        type='text'
-                        name="firstName"
-                        required
-                        onChange={handleFormInput}
-                    />
-                    <OutlinedInput
-                        className='middlename'
-                        placeholder="Middle Name"
-                        type='text'
-                        name="middleName"
-                        required
-                        onChange={handleFormInput}
-                    />
-                </div>
-                <OutlinedInput
-                    className=''
-                    placeholder="Last Name"
-                    type='text'
-                    name="lastName"
-                    required
-                    onChange={handleFormInput}
-                />
-                <div className='gender'>
-                    <span>Gender</span>
-                &nbsp;
-                &nbsp;
-                <label htmlFor="male">
-                        <input
-                            type="radio" name="identify"
-                            id="male"
-                            name="gender"
-                            value="M"
-                            onChange={handleFormInput}
-                            required
-                        />&nbsp;
-                    <span>Male</span>
-                    </label>
-                    <label htmlFor="female">
-                        <input
-                            type="radio"
-                            name="gender"
-                            id="male"
-                            value="F"
-                            onChange={handleFormInput}
-                            required
-                        />&nbsp;
-                    <span>Female</span>
-                    </label>
-                </div>
-                <TextField
-                    id="date"
-                    label="Birthday"
-                    type="date"
-                    name="birthday"
-                    defaultValue="2017-05-24"
-                    className={classes.textField}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    required
-                    onChange={handleFormInput}
-                />
-                <OutlinedInput
-                    className=''
-                    placeholder="Email"
-                    type='text'
-                    name="email"
-                    required
-                    onChange={handleFormInput}
-                />
-
-                <div className="names">
-                    <OutlinedInput
-                        className='firsname'
-                        placeholder="Nationality"
-                        type='text'
-                        name="nationality"
-                        required
-                        onChange={handleFormInput}
-                    />
-                    <OutlinedInput
-                        className='middlename'
-                        placeholder="Province"
-                        type='text'
-                        name="province"
-                        required
-                        onChange={handleFormInput}
-                    />
-                </div>
-                <div>
-                    <OutlinedInput
-                        className='first-line'
-                        placeholder="City"
-                        type='text'
-                        name="city"
-                        required
-                        onChange={handleFormInput}
-                    />
-                    <OutlinedInput
-                        className='first-line'
-                        placeholder="House Number"
-                        type='number'
-                        name="houseNumber"
-                        required
-                        onChange={handleFormInput}
-                    />
-                    <OutlinedInput
-                        className=''
-                        placeholder="Street Name"
-                        type='text'
-                        name="streetName"
-                        required
-                        onChange={handleFormInput}
-                    />
-                </div>
-                <fieldset className="idinfo">
-                    <legend>Addictional Information</legend>
+                <fieldset className="field-container">
+                    <legend>Personal Information</legend>
                     <div className="names">
-                        <OutlinedInput
+                        <TextField
                             className='firsname'
-                            placeholder="ID Type"
+                            label="First Name"
+                            variant="outlined"
+                            margin="normal"
                             type='text'
-                            name="idType"
+                            name="firstName"
                             required
                             onChange={handleFormInput}
                         />
-                        <OutlinedInput
+                        <TextField
                             className='middlename'
-                            placeholder="ID Number"
-                            type='number'
-                            name="idNumber"
+                            label="Middle Name"
+                            variant="outlined"
+                            margin="normal"
+                            type='text'
+                            name="middleName"
                             required
                             onChange={handleFormInput}
                         />
                     </div>
-                    <br />
-                    <div className="names">
-                        <OutlinedInput
-                            className='firsname'
-                            placeholder="Phone Number"
-                            type='text'
-                            name="phoneNumber"
-                            required
-                            onChange={handleFormInput}
-                        />
-                        <Button
-                            color='primary'
-                            component='button'
-                            variant='contained'
-                            className='middlename'
-                            onClick={handleShowConfirmation}
-                        >
-                            Confirm
-                    </Button>
-                    </div>
-                    <br />
-                    {
-                        confirmation &&
-                        <div className="names">
-                            <h6
-                                className='firsname'
-                            >
-                                Verify the mobile phone number through SMS
-                        </h6>
-                            <OutlinedInput
-                                className='middlename'
-                                placeholder="Confirmation Code"
-                                type='text'
-                                name="middlename"
+                    <TextField
+                        label="Last Name"
+                        variant="outlined"
+                        margin="normal"
+                        type='text'
+                        name="lastName"
+                        fullWidth
+                        required
+                        onChange={handleFormInput}
+                    />
+                    <div className='gender' style={{ marginBottom: "15px" }}>
+                        <span>Gender</span>
+                        &nbsp;
+                        &nbsp;
+                        <label htmlFor="male">
+                            <input
+                                type="radio" name="identify"
+                                id="male"
+                                name="gender"
+                                value="M"
+                                onChange={handleFormInput}
                                 required
+                            />&nbsp;
+                            <span>Male</span>
+                        </label>
+                        <label htmlFor="female">
+                            <input
+                                type="radio"
+                                name="gender"
+                                id="female"
+                                value="F"
+                                onChange={handleFormInput}
+                                required
+                            />&nbsp;
+                            <span>Female</span>
+                        </label>
+                    </div>
+
+                    <TextField
+                        id="date"
+                        label="Birthday"
+                        type="date"
+                        name="birthday"
+                        defaultValue="2017-05-24"
+                        className={classes.textField}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        required
+                        onChange={handleFormInput}
+                    />
+
+                    <div style={{ marginTop: '1.5rem' }}>
+                        <InputLabel id="label">Nationality</InputLabel>
+                        <Select
+                            style={{ width: '25rem' }}
+                            labelId="label"
+                            id="select"
+                            name="nationality"
+                            required
+                            onChange={handleFormInput}
+                        >
+                            <MenuItem value="10">Chicago</MenuItem>
+                            <MenuItem value="20">NYC</MenuItem>
+                        </Select>
+                    </div>
+
+                    <fieldset className="field-container">
+                        <legend>Contacts</legend>
+                        <TextField
+                            className=''
+                            label="Email"
+                            variant="outlined"
+                            margin="normal"
+                            type='text'
+                            name="email"
+                            fullWidth
+                            required
+                            onChange={handleFormInput}
+                        />
+
+                        <div className="names">
+                            <OutlinedInput
+                                className='firsname'
+                                placeholder="Saudi Mobile Number"
+                                type='text'
+                                name="phoneNumber"
+                                required
+                                onChange={handleFormInput}
+                            />
+                            <Button
+                                color='primary'
+                                component='button'
+                                variant='contained'
+                                className='middlename'
+                                onClick={handleShowConfirmation}
+                            >
+                                Confirm
+                            </Button>
+                        </div>
+                        <br />
+                        {
+                            confirmation &&
+                            <div className="names">
+                                <h6 className='firsname'>
+                                    Verify the mobile phone number through SMS
+                                </h6>
+                                <TextField
+                                    className='middlename'
+                                    label="Confirmation Code"
+                                    variant="outlined"
+                                    margin="normal"
+                                    type='number'
+                                    name="confirmationCode"
+                                    required
+                                />
+                            </div>
+                        }
+                        <h5>Emergency Numbers</h5>
+                        <div className="names" style={{ marginTop: "15px" }}>
+                            <TextField
+                                className='firsname'
+                                label="First Number"
+                                variant="outlined"
+                                type='text'
+                                name="emergencyNumber1"
+                                required
+                                onChange={handleFormInput}
+                            />
+                            <TextField
+                                className='middlename'
+                                label="Second Number"
+                                variant="outlined"
+                                type='text'
+                                name="emergencyNumber2"
+                                required
+                                onChange={handleFormInput}
                             />
                         </div>
-                    }
-                </fieldset>
-                <div className="maps">
-                    MAPS
+                    </fieldset>
+
                     <br />
-                    {
-                        location.latitude && location.longitude
-                            ?
-                            <>
-                                <h3>Latitude: {location.latitude}</h3>
-                                <br />
-                                <h3>Longitude: {location.longitude}</h3>
-                            </>
-                            :
-                            <h3>Location Not Confirmed!</h3>
-                    }
-                </div>
-                <Button
-                    onClick={handleLocationConfirm}
-                    variant={
-                        location.latitude && location.longitude
-                            ? 'disabled'
-                            : 'contained'
-                    }
-                    color="default"
-                >
-                    {
-                        location.latitude && location.longitude
-                            ? 'Your location were confirmed!'
-                            : 'Confirm Location'
-                    }
-                </Button>
+                    <div className="names" style={{ marginTop: '15px' }}>
+                        <div>
+                            <InputLabel id="label">Identity Type</InputLabel>
+                            <Select
+                                style={{ width: '20rem', marginRight: '1rem', marginTop: '20px' }}
+                                labelId="label"
+                                id="select"
+                                name="idType"
+                                required
+                                onChange={handleFormInput}
+                            >
+                                <MenuItem value="10">Chicago</MenuItem>
+                                <MenuItem value="20">NYC</MenuItem>
+                            </Select>
+                        </div>
+
+                        <TextField
+                            label="idNumber"
+                            variant="outlined"
+                            margin="normal"
+                            type='text'
+                            name="idNumber"
+                            fullWidth
+                            required
+                            onChange={handleFormInput}
+                        />
+                    </div>
+                </fieldset>
+
+                <fieldset className="field-container">
+                    <legend>GPS Location</legend>
+
+                    <TextField
+                        label="search for an address on the map"
+                        variant="filled"
+                        margin="normal"
+                        fullWidth
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <FiSearch />
+                                </InputAdornment>
+                            ),
+                        }}
+                        type='text'
+                        id="input-with-icon-textfield"
+                        name="searchInput"
+                        required
+                        onChange={handleFormInput}
+                    />
+                    <div className="maps" style={{ marginTop: '15px' }}>
+                        MAPS
+                    <br />
+                        {
+                            location.latitude && location.longitude
+                                ?
+                                <>
+                                    <h3>Latitude: {location.latitude}</h3>
+                                    <br />
+                                    <h3>Longitude: {location.longitude}</h3>
+                                </>
+                                :
+                                <h3>Location Not Confirmed!</h3>
+                        }
+                    </div>
+                    <Button
+                        onClick={handleLocationConfirm}
+                        fullWidth
+                        variant={
+                            location.latitude && location.longitude
+                                ? 'disabled'
+                                : 'contained'
+                        }
+                        color="default"
+                    >
+                        {
+                            location.latitude && location.longitude
+                                ? 'Your location were confirmed!'
+                                : 'Confirm Location'
+                        }
+                    </Button>
+
+                    <div className="names">
+                        <TextField
+                            className='firsname'
+                            label="Province"
+                            variant="outlined"
+                            margin="normal"
+                            type='text'
+                            name="province"
+                            required
+                            onChange={handleFormInput}
+                        />
+                        <TextField
+                            className='middlename'
+                            label="City"
+                            variant="outlined"
+                            margin="normal"
+                            type='text'
+                            name="city"
+                            required
+                            onChange={handleFormInput}
+                        />
+                    </div>
+                    <TextField
+                        className=''
+                        label="Area"
+                        variant="outlined"
+                        margin="normal"
+                        type='text'
+                        name="area"
+                        fullWidth
+                        required
+                        onChange={handleFormInput}
+                    />
+                    <div className="names">
+                        <TextField
+                            className='firsname'
+                            label="Street Name"
+                            variant="outlined"
+                            margin="normal"
+                            type='text'
+                            name="streetName"
+                            required
+                            onChange={handleFormInput}
+                        />
+                        <TextField
+                            className='middlename'
+                            label="House Number"
+                            variant="outlined"
+                            margin="normal"
+                            type='number'
+                            name="houseNumber"
+                            required
+                            onChange={handleFormInput}
+                        />
+                    </div>
+                </fieldset>
+
+
                 <div className="names">
                     <Button
                         color='secondary'
