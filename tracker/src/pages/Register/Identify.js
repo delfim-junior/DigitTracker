@@ -31,7 +31,7 @@ function Identify() {
                         id="user"
                         value="user"
                     />&nbsp;&nbsp;
-                    <span>User Tracker&nbsp;<FiUser size={30} /></span>
+                    <span>User Registration&nbsp;<FiUser size={30} /></span>
                 </label>
                 <label htmlFor="professional">
                     <input
@@ -41,7 +41,7 @@ function Identify() {
                         id="professional"
                         value="professional"
                     />&nbsp;&nbsp;
-                    <span>Medical Professional&nbsp;<FiBriefcase size={30} /></span>
+                    <span>Device Registration&nbsp;<FiBriefcase size={30} /></span>
                 </label>
             </div>
             <button onClick={() => history.goBack()}>Back</button>
