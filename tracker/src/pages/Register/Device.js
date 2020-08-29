@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function UserTracker() {
+function DeviceRegister() {
     const classes = useStyles();
     const history = useHistory()
 
@@ -63,6 +63,8 @@ function UserTracker() {
         emergencyNumber1: '',
         emergencyNumber2: '',
         searchInput: '',
+        deviceName: '',
+        imei: ''
 
 
     })
@@ -111,7 +113,9 @@ function UserTracker() {
             emergencyNumber1,
             emergencyNumber2,
             phoneNumber,
-            searchInput
+            searchInput,
+            deviceName,
+            imei
         } = formInput
 
         const { latitude, longitude } = location
@@ -146,7 +150,7 @@ function UserTracker() {
             <form onSubmit={handleRegister} className="user-container">
                 <header>
                     <FiArrowLeft onClick={handleGoBack} size={30} color="#27AE60" />
-                    <h6 onClick={handleGoBack}>Home</h6>
+                    <h6 onClick={handleGoBack}>Back</h6>
                 </header>
                 <div className="icon">
                     <img
@@ -158,6 +162,30 @@ function UserTracker() {
                     <br />
                     <h5>Device Registration</h5>
                 </div>
+                <fieldset className="field-container">
+                    <legend>Device Information</legend>
+                    <TextField
+                        label="Enter you device name"
+                        variant="outlined"
+                        margin="normal"
+                        type='text'
+                        name="deviceName"
+                        fullWidth
+                        required
+                        onChange={handleFormInput}
+                    />
+                    <TextField
+                        label="Enter you device IMEI"
+                        variant="outlined"
+                        margin="normal"
+                        type='text'
+                        name="imei"
+                        fullWidth
+                        required
+                        onChange={handleFormInput}
+                    />
+                </fieldset>
+
                 <fieldset className="field-container">
                     <legend>Personal Information</legend>
                     <div className="names">
@@ -542,4 +570,4 @@ function UserTracker() {
     )
 }
 
-export default UserTracker;
+export default DeviceRegister;

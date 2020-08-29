@@ -282,54 +282,50 @@ function SystemUser() {
                             <span>Contact Tracer</span>
                         </label>
                     </div>
-
-                    {
-                        professionalFields &&
-                        <>
-                            <TextField
-                                label="Employee ID"
-                                variant="outlined"
-                                margin="normal"
-                                type='number'
-                                fullWidth
-                                name="mobilePhone"
+                    <TextField
+                        label="Employee ID"
+                        variant="outlined"
+                        margin="normal"
+                        type='number'
+                        fullWidth
+                        name="mobilePhone"
+                        required
+                        onChange={handleFormInput}
+                    />
+                    <br />
+                    <div className="names" style={{ marginTop: '25px' }}>
+                        {
+                            professionalFields &&
+                            <div>
+                                <InputLabel id="label">Hospital</InputLabel>
+                                <Select
+                                    style={{ width: '20rem' }}
+                                    labelId="label"
+                                    id="select"
+                                    name="hospital"
+                                    required
+                                    onChange={handleFormInput}
+                                >
+                                    <MenuItem value="10">Chicago</MenuItem>
+                                    <MenuItem value="20">NYC</MenuItem>
+                                </Select>
+                            </div>
+                        }
+                        <div>
+                            <InputLabel style={{ marginLeft: '20px' }} id="label">City</InputLabel>
+                            <Select
+                                style={{ width: '20rem', marginLeft: '20px' }}
+                                labelId="label"
+                                id="select"
+                                name="city"
                                 required
                                 onChange={handleFormInput}
-                            />
-                            <br />
-                            <div className="names" style={{ marginTop: '25px' }}>
-                                <div>
-                                    <InputLabel id="label">Hospital</InputLabel>
-                                    <Select
-                                        style={{ width: '20rem' }}
-                                        labelId="label"
-                                        id="select"
-                                        name="hospital"
-                                        required
-                                        onChange={handleFormInput}
-                                    >
-                                        <MenuItem value="10">Chicago</MenuItem>
-                                        <MenuItem value="20">NYC</MenuItem>
-                                    </Select>
-                                </div>
-                                <div>
-                                    <InputLabel style={{ marginLeft: '20px' }} id="label">City</InputLabel>
-                                    <Select
-                                        style={{ width: '20rem', marginLeft: '20px' }}
-                                        labelId="label"
-                                        id="select"
-                                        name="city"
-                                        required
-                                        onChange={handleFormInput}
-                                    >
-                                        <MenuItem value="10">Chicago</MenuItem>
-                                        <MenuItem value="20">NYC</MenuItem>
-                                    </Select>
-                                </div>
-                            </div>
-                        </>
-                    }
-
+                            >
+                                <MenuItem value="10">Chicago</MenuItem>
+                                <MenuItem value="20">NYC</MenuItem>
+                            </Select>
+                        </div>
+                    </div>
                 </fieldset>
 
                 <fieldset className="field-container">
