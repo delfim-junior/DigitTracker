@@ -1,0 +1,53 @@
+.idenfy-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.idenfy-container div {
+    display: flex;
+    flex-direction: column;
+    padding: 1.2rem;
+    align-items: stretch;
+}
+
+.idenfy-container label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 2rem;
+    cursor: pointer;
+    transition: .2;
+}
+
+
+.idenfy-container label:hover {
+    color: #85929E ;
+}
+
+.idenfy-container .radio-icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+.idenfy-container .radio-icon span {
+    margin-right: .5rem;
+}
+
+.idenfy-container div label input[type="radio"] {
+    transform: scale(2)
+}
+
+.idenfy-container button {
+    background: #82E0AA;
+    cursor: pointer;
+    transition: 0.2s;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+}
+
+.idenfy-container button:hover {
+    background: #58D68D;
+}
