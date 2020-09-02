@@ -24,13 +24,26 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const cities = [
+    {
+        city: 'Chicago',
+        hospitals: ['X', 'Y', 'Z']
+    },
+    {
+        city: 'NYC',
+        hospitals: ['K', 'W', 'Q']
+    }
+]
+
 function SystemUser() {
     const classes = useStyles();
     const history = useHistory()
 
     const [successMessage, setSuccessMessage] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [hospitals, setHospitals] = useState([])
     const [professionalFields, setProfessionalFields] = useState(true)
+
     const [formInput, setFormInput] = useState({
         firstName: '',
         middleName: '',
@@ -60,6 +73,16 @@ function SystemUser() {
         }
     }, [formInput.role])
 
+    useEffect(() => {
+        if (formInput.city !== '') {
+            const auxHopitals = cities.filter(city => (
+                city.city === formInput.city && city
+            ))
+
+            setHospitals(auxHopitals[0].hospitals)
+        }
+
+    }, [formInput.city])
 
     function handleGoBack() {
         history.push('/')
@@ -317,8 +340,11 @@ function SystemUser() {
                                 required
                                 onChange={handleFormInput}
                             >
-                                <MenuItem value="10">Chicago</MenuItem>
-                                <MenuItem value="20">NYC</MenuItem>
+                                {
+                                    cities.map(item => (
+                                        <MenuItem value={item.city}>{item.city}</MenuItem>
+                                    ))
+                                }
                             </Select>
                         </div>
                         {
@@ -333,9 +359,13 @@ function SystemUser() {
                                     name="hospital"
                                     required
                                     onChange={handleFormInput}
+                                    disabled={formInput.city !== '' ? false : true}
                                 >
-                                    <MenuItem value="10">Chicago</MenuItem>
-                                    <MenuItem value="20">NYC</MenuItem>
+                                    {
+                                        hospitals.map(item => (
+                                            <MenuItem value={item}>{item}</MenuItem>
+                                        ))
+                                    }
                                 </Select>
                             </div>
                         }
