@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
-import { FiArrowLeft, FiCheck, FiEye, FiFileText } from 'react-icons/fi'
+import { FiArrowLeft, FiCheck, FiEye, FiTrash2 } from 'react-icons/fi'
 
 import ReactTooltip from 'react-tooltip';
 import './styles.css';
@@ -102,8 +102,8 @@ function Requests() {
                                         onClick={() => { }}
                                     />
 
-                                    <FiFileText
-                                        data-tip="Archive"
+                                    <FiTrash2
+                                        data-tip="Reject"
                                         className='action'
                                         color="#641E16 "
                                         style={{ cursor: 'pointer' }}
