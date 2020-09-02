@@ -9,7 +9,7 @@ function NormalUser() {
 
   const history = useHistory()
 
-  const [device, setDevice] = useState({})
+  const [device, setDevice] = useState(null)
   useEffect(() => {
     //Fetch device info from Database here
     setDevice({
