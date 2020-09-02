@@ -7,7 +7,7 @@ function Dashboard() {
     const history = useHistory()
 
     function handleNavigateToRequestsList() {
-        history.push('/admin/requests')
+        history.push('/dashboard/admin/requests')
     }
     return (
         <main>

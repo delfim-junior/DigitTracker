@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './styles.css';
 
 
-import Loading from '../Loading';
+import Spinners from '../Spinners/'
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -36,6 +36,7 @@ function DeviceRegister() {
 
     const [confirmation, setConfirmation] = useState(false)
     const [successMessage, setSuccessMessage] = useState(false)
+    const [loading, setLoading] = useState(false)
     const [location, setLocation] = useState({
         latitude: '',
         longitude: ''
@@ -125,9 +126,13 @@ function DeviceRegister() {
             if (latitude !== '' && longitude !== '') {
                 if (confirmation) {
                     //Backend...
-                    setSuccessMessage(true)
+                    setLoading(true)
                     setTimeout(() => {
-                        history.push('/')
+                        setLoading(false)
+                        setSuccessMessage(true)
+                        setTimeout(() => {
+                            history.push('/')
+                        }, 3000)
                     }, 3000)
                 }
                 else {
@@ -563,7 +568,11 @@ function DeviceRegister() {
                 <br />
                 {
                     successMessage &&
-                    <Loading />
+                    <Spinners action="success" />
+                }
+                {
+                    loading &&
+                    <Spinners action="loading" />
                 }
             </form>
         </>

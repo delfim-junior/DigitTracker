@@ -3,13 +3,15 @@ import { Switch, Route } from 'react-router-dom'
 import Dashboard from '../pages/Dashboard'
 import Requests from '../pages/Requests'
 import Details from '../pages/Details'
+import NormalUser from '../pages/NormalUser'
 
 
 const RoutesAdmin = () => (
     <Switch>
-        <Route exact path='/admin' component={Dashboard} />
-        <Route exact path='/admin/requests' component={Requests} />
-        <Route path='/admin/requests/:id' component={Details} />
+        <Route exact path='/dashboard/admin' component={Dashboard} />
+        <Route exact path='/dashboard/user' component={NormalUser} />
+        <Route exact path='/dashboard/admin/requests' component={Requests} />
+        <Route path='/dashboard/admin/requests/:id' component={Details} />
     </Switch>
 )
 

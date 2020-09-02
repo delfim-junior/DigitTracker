@@ -17,7 +17,7 @@ const Routes = () => (
             <Route path='/register/device-register' component={Device}/>
             <Route path='/register/user-register' component={SystemUser}/>
         </Route>
-        <Route path='/admin' component={Admin} />
+        <Route path='/dashboard/user' component={Admin} />
     </BrowserRouter>
 )
 

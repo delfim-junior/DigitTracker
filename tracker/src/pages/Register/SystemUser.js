@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { FiUserPlus, FiArrowLeft } from 'react-icons/fi'
 import { useHistory } from 'react-router-dom';
 import validator from 'validator'
-
 import { OutlinedInput } from '@material-ui/core';
 import { Button, Select, TextField, MenuItem, InputLabel } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { ToastContainer, toast } from 'react-toastify';
 
+import Spinners from '../Spinners/'
+
 import 'react-toastify/dist/ReactToastify.css';
 import './styles.css';
 
-import Loading from '../Loading';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -29,6 +29,7 @@ function SystemUser() {
     const history = useHistory()
 
     const [successMessage, setSuccessMessage] = useState(false)
+    const [loading, setLoading] = useState(false)
     const [professionalFields, setProfessionalFields] = useState(true)
     const [formInput, setFormInput] = useState({
         firstName: '',
@@ -72,6 +73,7 @@ function SystemUser() {
 
     function handleRegister(event) {
         event.preventDefault()
+
         //data ready to use in the backend
         const {
             firstName,
@@ -97,9 +99,13 @@ function SystemUser() {
                 if (password.length >= 4) {
                     if (password === confirmPassword) {
                         //Backend...
-                        setSuccessMessage(true)
+                        setLoading(true)
                         setTimeout(() => {
-                            history.push('/')
+                            setLoading(false)
+                            setSuccessMessage(true)
+                            setTimeout(() => {
+                                history.push('/')
+                            }, 3000)
                         }, 3000)
                     }
                     else {
@@ -119,6 +125,13 @@ function SystemUser() {
             toast.error('The entered Email is not valid')
         }
 
+    }
+
+    function letters(e) {
+        var letters = /^[a-z]*$/i;
+        if (!e.target.value.match(letters)) {
+            alert('Please input letters only');
+        }
     }
 
     return (
@@ -149,6 +162,7 @@ function SystemUser() {
                             margin="normal"
                             type='text'
                             name="firstName"
+                            onKeyUp={letters}
                             required
 
                             onChange={handleFormInput}
@@ -294,12 +308,28 @@ function SystemUser() {
                     />
                     <br />
                     <div className="names" style={{ marginTop: '25px' }}>
+
+                        <div>
+                            <InputLabel id="label">City</InputLabel>
+                            <Select
+                                style={{ width: '20rem' }}
+                                labelId="label"
+                                id="select"
+                                name="city"
+                                required
+                                onChange={handleFormInput}
+                            >
+                                <MenuItem value="10">Chicago</MenuItem>
+                                <MenuItem value="20">NYC</MenuItem>
+                            </Select>
+                        </div>
                         {
                             professionalFields &&
                             <div>
-                                <InputLabel id="label">Hospital</InputLabel>
+
+                                <InputLabel style={{ marginLeft: '20px' }} id="label">Hospital</InputLabel>
                                 <Select
-                                    style={{ width: '20rem' }}
+                                    style={{ width: '20rem', marginLeft: '20px' }}
                                     labelId="label"
                                     id="select"
                                     name="hospital"
@@ -311,20 +341,6 @@ function SystemUser() {
                                 </Select>
                             </div>
                         }
-                        <div>
-                            <InputLabel style={{ marginLeft: '20px' }} id="label">City</InputLabel>
-                            <Select
-                                style={{ width: '20rem', marginLeft: '20px' }}
-                                labelId="label"
-                                id="select"
-                                name="city"
-                                required
-                                onChange={handleFormInput}
-                            >
-                                <MenuItem value="10">Chicago</MenuItem>
-                                <MenuItem value="20">NYC</MenuItem>
-                            </Select>
-                        </div>
                     </div>
                 </fieldset>
 
@@ -402,7 +418,11 @@ function SystemUser() {
             </form>
             {
                 successMessage &&
-                <Loading />
+                <Spinners action="success" />
+            }
+            {
+                loading &&
+                <Spinners action="loading" />
             }
         </>
     )

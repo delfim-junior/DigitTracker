@@ -6,7 +6,7 @@ import validator from 'validator'
 import logo from '../../assets/images/icon.JPG'
 
 import './styles.css';
-import Loading from '../Loading';
+import Spinners from '../Spinners';
 
 
 
@@ -75,7 +75,7 @@ function PasswordRecovery() {
       }
       {
         successMessage &&
-        <Loading recovery={true} handleLogin={handleLogin} />
+        <Spinners action="success" recovery={true} handleLogin={handleLogin} />
       }
     </div >
   );

@@ -58,7 +58,7 @@ function Requests() {
     }
 
     function handleSeeDetails(id) {
-        history.push(`/admin/requests/${id}`)
+        history.push(`/dashboard/admin/requests/${id}`)
     }
 
     return (
