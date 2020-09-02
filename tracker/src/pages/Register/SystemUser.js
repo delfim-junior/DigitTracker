@@ -162,9 +162,7 @@ function SystemUser() {
                             margin="normal"
                             type='text'
                             name="firstName"
-                            onKeyUp={letters}
                             required
-
                             onChange={handleFormInput}
                         />
 
