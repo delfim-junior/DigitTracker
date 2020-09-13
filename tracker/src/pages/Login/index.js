@@ -11,7 +11,7 @@ function Login() {
   function autenticate() {
     //Autenticate the user and take him to the dashboard page that he belong...
     //As an example I will take him to Normal User Dashboard:
-    history.push('/dashboard/user')
+    history.push('/dashboard/admin')
   }
 
   return (
