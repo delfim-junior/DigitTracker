@@ -23,9 +23,9 @@ const style = {
     position: 'fixed'
 }
 
-const Spinners = ({ recovery, handleLogin, action }) => {
+const Spinners = ({ recovery, handleLogin, action, withoutBackground }) => {
     return (
-        <div style={style}>
+        <div style={withoutBackground ? null : style}>
             {
                 action === 'success'
                     ?
