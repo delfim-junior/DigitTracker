@@ -14,7 +14,7 @@ function Admin() {
     const [loading, setLoading] = useState(true);
 
 
-    useEffect(async () => {
+    useEffect(() => {
         setUserName('Amilcar Paco');
         setTimeout(() => {
             setLoading(false)
