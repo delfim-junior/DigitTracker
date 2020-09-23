@@ -8,7 +8,7 @@ function Patients() {
     const history = useHistory()
     const params = useParams()
 
-    const [patiens, setPatients] = useState({})
+    const [patients, setPatients] = useState({})
     const [treatmentStatusSelect, setTreatmentStatusSelect] = useState('')
     const [treatmentStatus, setTreatmentStatus] = useState([
         { name: 'Home Isolation' },
@@ -81,10 +81,12 @@ function Patients() {
 
     //SAVE ON DATA BASE ANY MODIFICATION HERE:
     useEffect(() => {
-        if(patiens.id) {
+        if(patients.id) {
             //API CALL HERE
+            console.log(patients)
+            //é só pegar nesse patients e mandar para o backend para guardar!
         }
-    }, [patiens])
+    }, [patients])
 
     function handleSelection(event) {
         const selectedName = event.target.name
@@ -94,26 +96,22 @@ function Patients() {
         if (selectedName == 'treatmentStatus')
         {
             setTreatmentStatusSelect(selectedValue)
-            setPatients({...patiens, treatmentStatus: selectedValue});
+            setPatients({...patients, treatmentStatus: selectedValue});
         }
             
         if (selectedName == 'currentStatus')
-            setPatients({...patiens, currentStatus: selectedValue});
+            setPatients({...patients, currentStatus: selectedValue});
 
         if (selectedName == 'icu')
-            setPatients({...patiens, icu: selectedValue});
+            setPatients({...patients, icu: selectedValue});
 
         if (selectedName == 'ward')
-            setPatients({...patiens, ward: selectedValue});
+            setPatients({...patients, ward: selectedValue});
     }
 
 
     function handleGoBack() {
         history.goBack()
-    }
-
-    function handleSeeDetails(id) {
-        history.push(`/dashboard/admin/requests/${id}`)
     }
 
 
@@ -135,18 +133,18 @@ function Patients() {
                     </tr>
                     {
 
-                        <tr onClick={() => handleSeeDetails(patiens.id)}>
-                            <td>{patiens.name}</td>
-                            <td>{patiens.gender}</td>
-                            <td>{patiens.birthdayDate}</td>
-                            <td>{patiens.admissionDate}</td>
-                            <td>{patiens.diagnosisDate}</td>
+                        <tr>
+                            <td>{patients.name}</td>
+                            <td>{patients.gender}</td>
+                            <td>{patients.birthdayDate}</td>
+                            <td>{patients.admissionDate}</td>
+                            <td>{patients.diagnosisDate}</td>
                             <td className="select-td">
                                 <select onChange={handleSelection} name="treatmentStatus" id="">
-                                    <option value={patiens.treatmentStatus}>{patiens.treatmentStatus}</option>
+                                    <option value={patients.treatmentStatus}>{patients.treatmentStatus}</option>
                                     {
                                         treatmentStatus.map(status => (
-                                            status.name !== patiens.treatmentStatus
+                                            status.name !== patients.treatmentStatus
                                             &&
                                             <option value={status.name}>{status.name}</option>
                                         ))
@@ -156,10 +154,10 @@ function Patients() {
 
                             <td className="select-td">
                                 <select onChange={handleSelection} name="currentStatus" id="">
-                                    <option value={patiens.currentStatus}>{patiens.currentStatus}</option>
+                                    <option value={patients.currentStatus}>{patients.currentStatus}</option>
                                     {
                                         currentStatus.map(status => (
-                                            status.name !== patiens.currentStatus
+                                            status.name !== patients.currentStatus
                                             &&
                                             <option value={status.name}>{status.name}</option>
                                         ))
@@ -180,7 +178,7 @@ function Patients() {
                         <div className="additional-info">
                             <label htmlFor="address">Address</label>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="text" value={patiens.address} />
+                            <input type="text" value={patients.address} />
                         </div>
                     }
                     {
@@ -188,7 +186,7 @@ function Patients() {
                         &&
                         <div className="additional-info">
                             <label htmlFor="quarentine">Quarentine</label>
-                            <input type="text" value={patiens.quarentine} />
+                            <input type="text" value={patients.quarentine} />
                         </div>
                     }
                     {
@@ -200,7 +198,7 @@ function Patients() {
                             <select onChange={handleSelection} name="icu" id="">
                                 {
                                     currentStatus.map(status => (
-                                        status.name !== patiens.icu
+                                        status.name !== patients.icu
                                         &&
                                         <option value={status.name}>{status.name}</option>
                                     ))
@@ -214,11 +212,11 @@ function Patients() {
                         <div className="additional-info">
                             <label htmlFor="ward">Ward</label>
                             <select onChange={handleSelection} name="ward" id="">
-                                <option value={patiens.ward}>{patiens.ward}</option>
+                                <option value={patients.ward}>{patients.ward}</option>
                                 {
 
                                     currentStatus.map(status => (
-                                        status.name !== patiens.ward
+                                        status.name !== patients.ward
                                         &&
                                         <option value={status.name}>{status.name}</option>
                                     ))
