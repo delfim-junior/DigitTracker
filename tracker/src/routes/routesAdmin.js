@@ -12,11 +12,10 @@ const RoutesAdmin = () => (
     <Switch>
         <Route exact path='/dashboard/admin' component={Dashboard} />
         <Route exact path='/dashboard/user' component={NormalUser} />
-        <Route exact path='/dashboard/admin/requests' component={Patients} />
-        <Route path='/dashboard/admin/requests/:id' component={PatientDetails} />
+        <Route exact path='/dashboard/admin/requests' component={Requests} />
+        <Route path='/dashboard/admin/requests/:id' component={Details} />
         <Route exact path='/dashboard/admin/patients' component={Patients} />
         <Route exact path='/dashboard/admin/patients/:id' component={PatientDetails} />
-        
     </Switch>
 )
 
